@@ -11,7 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910223039) do
+ActiveRecord::Schema.define(version: 20150910225408) do
+
+  create_table "blog_follows", force: :cascade do |t|
+    t.integer  "follower_id"
+    t.integer  "followed_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+  end
+
+  add_index "blog_follows", ["followed_id"], name: "index_blog_follows_on_followed_id"
+  add_index "blog_follows", ["follower_id", "followed_id"], name: "index_blog_follows_on_follower_id_and_followed_id", unique: true
+  add_index "blog_follows", ["follower_id"], name: "index_blog_follows_on_follower_id"
 
   create_table "blogs", force: :cascade do |t|
     t.string   "name"
