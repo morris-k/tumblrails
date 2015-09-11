@@ -1,0 +1,6 @@
+<div class="post-container">
+	<div class="post-header">
+		<%= link_to post.blog.name, post.blog %>
+	</div>
+	<%= render "#{post.post_type.downcase}s/#{post.post_type.downcase}", post: post %>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150910225408) do
+ActiveRecord::Schema.define(version: 20150911012641) do
 
   create_table "blog_follows", force: :cascade do |t|
     t.integer  "follower_id"
@@ -37,17 +37,8 @@ ActiveRecord::Schema.define(version: 20150910225408) do
   add_index "blogs", ["name"], name: "index_blogs_on_name", unique: true
   add_index "blogs", ["user_id"], name: "index_blogs_on_user_id"
 
-  create_table "user_blog_relations", force: :cascade do |t|
-    t.boolean  "primary"
-    t.integer  "user_id"
-    t.integer  "blog_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "user_blog_relations", ["blog_id"], name: "index_user_blog_relations_on_blog_id"
-  add_index "user_blog_relations", ["user_id", "blog_id"], name: "index_user_blog_relations_on_user_id_and_blog_id"
-  add_index "user_blog_relations", ["user_id"], name: "index_user_blog_relations_on_user_id"
+# Could not dump table "posts" because of following NoMethodError
+#   undefined method `[]' for nil:NilClass
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false

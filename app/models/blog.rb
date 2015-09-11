@@ -4,4 +4,8 @@ class Blog < ActiveRecord::Base
 
 	has_many :blog_follows, foreign_key: :followed_id
 	has_many :followers, through: :blog_follows, source: :follower
+
+	has_many :posts
+
+	
 end
