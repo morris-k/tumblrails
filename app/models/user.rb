@@ -13,21 +13,35 @@ class User < ActiveRecord::Base
   
   validates :name, presence: true
 
-  has_many :blog_follows, foreign_key: :follower_id
-  has_many :following, through: :blog_follows, source: :followed
+  has_many :active_follows, foreign_key: :follower_id,
+                class_name: "BlogFollow"
+  has_many :following, through: :active_follows,
+                source: :followed
 
+
+  has_many :posts
 
   def create_primary
-  	self.blogs.create(name: name, primary: true, admin: true)
+    self.blogs.create(name: name, primary: true, admin: true)
+  end
+
+  def following?(blog)
+    following.include?(blog)
+  end
+
+  def follow(blog)
+    if can_follow(blog)
+      active_follows.create(followed_id: blog.id)
+    end
   end
 
   def can_follow(blog)
     !blogs.include?(blog) && !following.ids.include?(blog.id)
   end
 
-  def follow(blog)
-    if can_follow(blog)
-      self.blog_follows.create(followed_id: blog.id)
+  def unfollow(blog)
+    if following?(blog)
+      active_follows.find_by(followed_id: blog.id).destroy
     end
   end
 
