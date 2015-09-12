@@ -1,6 +1,6 @@
 GIT
   remote: git://github.com/speak/speak.git
-  revision: d0e652b1f92cb3dccc15e5fe5c5d14f89e48890b
+  revision: 7f416f0bb9b78e9fbcf9b66c9cae82d89fe8451a
   branch: master
   specs:
     speak (0.0.0)

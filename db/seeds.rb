@@ -9,15 +9,18 @@ def create_data
 end
 
 def create_users
+	puts "CREATING USERS"
 	pass = 'password'
 	User.create(name: 'test', email: 'test@example.com', password: 'password')
 	20.times do 
 		name = Faker::Name.first_name + Faker::Name.last_name
 		User.create(name: name.downcase, email: name.downcase + "@example.com", password: 'password')
 	end
+	puts "--- #{User.count} USERS CREATED"
 end
 
 def create_follows
+	puts "CREATING FOLLOWS"
 	User.all.each do |u|
 		tms = rand(10) + 5
 		tms.times do
@@ -28,20 +31,23 @@ def create_follows
 			end
 		end
 	end
+	puts "---FOLLOWS CREATED"
 end
 
 def create_posts
-	s = Speak.new
+	puts "CREATING POSTS"
+	s = Speak::Generator.new
 	User.all.each do |u|
 		tms = rand(5) + 1
 		tms.times do |i|
-			title = s.rand_words(rand(4) + 1)
+			title = Faker::Lorem.sentence
 			body = s.generate_sentence
 			t = Text.new(blog_id: u.primary_blog.id, title: title, body: body)
 			t.save
 			t.update(created_at: (rand(10)).days.ago)
 		end
 	end
+	puts "--- #{Post.count} POSTS CREATED"
 end
 
 DatabaseCleaner.clean
