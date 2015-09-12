@@ -1,5 +1,10 @@
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :truncation
+
 def create_data
 	create_users
+	create_follows
 end
 
 def create_users
@@ -11,5 +16,18 @@ def create_users
 	end
 end
 
-User.destroy_all
+def create_follows
+	User.all.each do |u|
+		tms = rand(10) + 5
+		tms.times do
+			us = rand(User.count) + 1
+			ups = User.find(us).primary_blog
+			if u.can_follow(ups)
+				u.follow(ups)
+			end
+		end
+	end
+end
+
+DatabaseCleaner.clean
 create_data

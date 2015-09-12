@@ -37,6 +37,7 @@ gem 'bootstrap-sass'
 
 group :development do
 	gem 'faker'
+	gem 'database_cleaner'
 end
 
 group :development, :test do
