@@ -38,6 +38,7 @@ gem 'bootstrap-sass'
 group :development do
 	gem 'faker'
 	gem 'database_cleaner'
+	gem 'speak', :github => 'speak/speak', :branch => 'master'
 end
 
 group :development, :test do

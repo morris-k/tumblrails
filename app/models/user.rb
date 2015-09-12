@@ -45,4 +45,14 @@ class User < ActiveRecord::Base
     end
   end
 
+  def following_count
+    following.length
+  end
+
+
+  def dash_posts
+    ids = following.ids.concat(blogs.ids)
+    Post.where(blog_id: ids)
+  end
+
 end

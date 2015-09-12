@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/speak/speak.git
+  revision: d0e652b1f92cb3dccc15e5fe5c5d14f89e48890b
+  branch: master
+  specs:
+    speak (0.0.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -172,6 +179,7 @@ DEPENDENCIES
   rails (= 4.2.3)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
+  speak!
   spring
   sqlite3
   turbolinks

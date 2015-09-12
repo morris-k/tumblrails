@@ -1,8 +1,6 @@
 <p id="notice"><%= notice %></p>
 
-<% @posts.each do |post| %>
-	<%= render %>
-<% end %>
+<% render @posts %>
 
 <%= link_to 'Edit', edit_blog_path(@blog) %> |
 <%= link_to 'Back', blogs_path %>

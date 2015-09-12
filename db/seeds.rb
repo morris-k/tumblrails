@@ -5,6 +5,7 @@ DatabaseCleaner.strategy = :truncation
 def create_data
 	create_users
 	create_follows
+	create_posts
 end
 
 def create_users
@@ -25,6 +26,20 @@ def create_follows
 			if u.can_follow(ups)
 				u.follow(ups)
 			end
+		end
+	end
+end
+
+def create_posts
+	s = Speak.new
+	User.all.each do |u|
+		tms = rand(5) + 1
+		tms.times do |i|
+			title = s.rand_words(rand(4) + 1)
+			body = s.generate_sentence
+			t = Text.new(blog_id: u.primary_blog.id, title: title, body: body)
+			t.save
+			t.update(created_at: (rand(10)).days.ago)
 		end
 	end
 end
