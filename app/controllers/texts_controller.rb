@@ -16,6 +16,6 @@ class TextsController < ApplicationController
 
 	private
 	def text_params
-		params.require(:text).permit(:title, :body, :blog_id)
+		params.require(:text).permit(:title, :body, :blog_id, :tag_list)
 	end
 end

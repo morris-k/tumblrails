@@ -42,7 +42,8 @@ def create_posts
 		tms.times do |i|
 			title = Faker::Lorem.sentence
 			body = s.generate_sentence
-			t = Text.new(blog_id: u.primary_blog.id, title: title, body: body)
+			tag_list = Array.new(rand(5) + 1) { Faker::Commerce.color }.uniq.join(", ")
+			t = Text.new(blog_id: u.primary_blog.id, title: title, body: body, tag_list: tag_list)
 			t.save
 			t.update(created_at: (rand(10)).days.ago)
 		end

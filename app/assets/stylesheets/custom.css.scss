@@ -1,2 +1,6 @@
 @import 'bootstrap-sprockets';
-@import 'bootstrap'
+@import 'bootstrap';
+
+body {
+	-webkit-font-smoothing: antialiased;
+}

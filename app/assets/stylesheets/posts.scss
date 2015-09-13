@@ -3,5 +3,13 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .post-container {
-	margin-bottom: 1em;
+	margin-bottom: 2em;
+}
+
+.post-body, .post-tags {
+	padding-left: 1em;
+}
+
+.post-list {
+	margin-top: 2em;
 }

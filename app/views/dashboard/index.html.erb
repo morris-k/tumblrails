@@ -1,0 +1,8 @@
+<%= render 'shared/sidebar' %>
+<div class="dash_posts post_list col-md-8 col-md-offset-1">
+
+<% @posts.each do |post| %>
+	<%= render 'posts/post', post: post %>
+<% end %>
+
+</div>

@@ -34,6 +34,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'devise'
 gem 'bootstrap-sass'
+gem 'acts-as-taggable-on', '~> 3.4'
 
 group :development do
 	gem 'faker'

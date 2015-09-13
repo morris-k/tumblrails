@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
                 source: :followed
 
 
-  has_many :posts
+  has_many :posts, through: :blogs
 
   def create_primary
     self.blogs.create(name: name, primary: true, admin: true)
@@ -53,6 +53,10 @@ class User < ActiveRecord::Base
   def dash_posts
     ids = following.ids.concat(blogs.ids)
     Post.where(blog_id: ids)
+  end
+
+  def owns_post(post)
+    posts.include?(post)
   end
 
 end

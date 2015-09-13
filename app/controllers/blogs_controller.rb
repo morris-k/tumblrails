@@ -10,7 +10,11 @@ class BlogsController < ApplicationController
   # GET /blogs/1
   # GET /blogs/1.json
   def show
-    @posts = @blog.posts
+    if params[:post_id]
+        @posts = [Post.find(params[:post_id])]
+    else
+        @posts = @blog.posts
+     end
   end
 
   # GET /blogs/new

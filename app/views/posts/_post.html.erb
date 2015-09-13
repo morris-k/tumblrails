@@ -1,6 +1,8 @@
-<div class="post-container">
-	<div class="post-header">
-		<%= link_to post.blog.name, post.blog %>
+<div class="row">
+	<div class="post-container col-md-10 col-md-offset-1">
+		<%= render 'posts/post_head', post: post %>
+		<%= render post_view_name(post), post: post %>
+		<%= render 'posts/tags', post: post %>
+		<%= render 'posts/post_foot', post: post %>
 	</div>
-	<%= render "#{post.post_type.downcase}s/#{post.post_type.downcase}", post: post %>
 </div>

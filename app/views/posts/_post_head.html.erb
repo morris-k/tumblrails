@@ -1,0 +1,4 @@
+<div class="post_head">
+	<%= link_to post.blog_name, post.blog %>
+	<%= link_to "see post", blog_post_path(post_id: post.id, id: post.blog.id) %>
+</div>
