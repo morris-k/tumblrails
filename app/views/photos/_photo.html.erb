@@ -1,0 +1,10 @@
+<div class="post-photos">
+	<% post.post_images.each do |image| %>
+		<%= image_tag(image.url) %>
+	<% end %>
+</div>
+<div class="post-caption">
+	<% if !post.caption.nil? %>
+		<%= post.caption %>
+	<% end %>
+</div>

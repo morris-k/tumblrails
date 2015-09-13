@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150912225847) do
+ActiveRecord::Schema.define(version: 20150913224401) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "blog_follows", force: :cascade do |t|
     t.integer  "follower_id"
@@ -20,9 +23,9 @@ ActiveRecord::Schema.define(version: 20150912225847) do
     t.datetime "updated_at",  null: false
   end
 
-  add_index "blog_follows", ["followed_id"], name: "index_blog_follows_on_followed_id"
-  add_index "blog_follows", ["follower_id", "followed_id"], name: "index_blog_follows_on_follower_id_and_followed_id", unique: true
-  add_index "blog_follows", ["follower_id"], name: "index_blog_follows_on_follower_id"
+  add_index "blog_follows", ["followed_id"], name: "index_blog_follows_on_followed_id", using: :btree
+  add_index "blog_follows", ["follower_id", "followed_id"], name: "index_blog_follows_on_follower_id_and_followed_id", unique: true, using: :btree
+  add_index "blog_follows", ["follower_id"], name: "index_blog_follows_on_follower_id", using: :btree
 
   create_table "blogs", force: :cascade do |t|
     t.string   "name"
@@ -34,11 +37,32 @@ ActiveRecord::Schema.define(version: 20150912225847) do
     t.datetime "updated_at",                     null: false
   end
 
-  add_index "blogs", ["name"], name: "index_blogs_on_name", unique: true
-  add_index "blogs", ["user_id"], name: "index_blogs_on_user_id"
+  add_index "blogs", ["name"], name: "index_blogs_on_name", unique: true, using: :btree
+  add_index "blogs", ["user_id"], name: "index_blogs_on_user_id", using: :btree
 
-# Could not dump table "posts" because of following NoMethodError
-#   undefined method `[]' for nil:NilClass
+  create_table "post_attachments", force: :cascade do |t|
+    t.integer  "post_id"
+    t.string   "attachment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "post_attachments", ["post_id", "attachment"], name: "index_post_attachments_on_post_id_and_attachment", using: :btree
+  add_index "post_attachments", ["post_id"], name: "index_post_attachments_on_post_id", using: :btree
+
+  create_table "posts", force: :cascade do |t|
+    t.integer  "blog_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "post_type"
+    t.string   "title"
+    t.text     "body"
+    t.text     "caption"
+  end
+
+  add_index "posts", ["blog_id"], name: "index_posts_on_blog_id", using: :btree
+  add_index "posts", ["post_type", "caption"], name: "index_posts_on_post_type_and_caption", using: :btree
+  add_index "posts", ["post_type", "title", "body"], name: "index_posts_on_post_type_and_title_and_body", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"
@@ -50,15 +74,15 @@ ActiveRecord::Schema.define(version: 20150912225847) do
     t.datetime "created_at"
   end
 
-  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true
-  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context"
+  add_index "taggings", ["tag_id", "taggable_id", "taggable_type", "context", "tagger_id", "tagger_type"], name: "taggings_idx", unique: true, using: :btree
+  add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: :cascade do |t|
     t.string  "name"
     t.integer "taggings_count", default: 0
   end
 
-  add_index "tags", ["name"], name: "index_tags_on_name", unique: true
+  add_index "tags", ["name"], name: "index_tags_on_name", unique: true, using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
@@ -77,7 +101,7 @@ ActiveRecord::Schema.define(version: 20150912225847) do
     t.integer  "following"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
