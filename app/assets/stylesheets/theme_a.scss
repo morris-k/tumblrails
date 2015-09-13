@@ -1,0 +1,9 @@
+@import 'basic_styles';
+$dark_color: #333;
+$light_color: #d43ea3;
+$font_family: "Garamond";
+@include basic_styles($dark_color,$light_color,$font_family,$font_color,$font_size);
+
+.blog-header {
+	height: 200px;
+}

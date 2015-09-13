@@ -1,0 +1,4 @@
+@import 'basic_styles';
+$dark_color: #08c;
+$light_color: #FFFFFF;
+@include basic_styles($dark_color,$light_color,$font_family,$font_color,$font_size);
