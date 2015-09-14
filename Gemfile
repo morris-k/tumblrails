@@ -39,6 +39,7 @@ gem 'devise'
 gem 'bootstrap-sass'
 gem 'acts-as-taggable-on', '~> 3.4'
 
+gem 'mini_magick'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'
 
 group :development do

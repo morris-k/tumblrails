@@ -1,5 +1,5 @@
 # encoding: utf-8
-
+require 'carrierwave/processing/mini_magick'
 class AvatarUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
@@ -16,7 +16,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
-  # include CarrierWave::MiniMagick
+  include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
   storage :file
@@ -28,17 +28,19 @@ class AvatarUploader < CarrierWave::Uploader::Base
     "uploads/#{model.class.to_s.underscore}/#{mounted_as}/#{model.id}"
   end
   version :small do
-    process resize_to_fit: [64, 64]
+    process resize_to_fill: [64, 64]
+    process convert: :png
   end
 
   version :medium do 
-    process resize_to_fit: [96, 96]
+    process resize_to_fill: [96, 96]
+    process convert: :png
   end
 
   version :large do
-    process resize_to_fit: [128, 128]
+    process resize_to_fill: [128, 128]
+    process convert: :png
   end
-  process convert: 'png'
 
   # Process files as they are uploaded:
   # process scale: [200, 300]

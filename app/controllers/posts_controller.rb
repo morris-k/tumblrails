@@ -16,4 +16,5 @@ class PostsController < ApplicationController
 			render @post
 		end
 	end
+
 end

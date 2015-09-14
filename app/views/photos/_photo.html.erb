@@ -1,6 +1,6 @@
-<div class="post-photos">
-	<% post.post_images.each do |image| %>
-		<%= image_tag(image.url) %>
+<div class="post-photos post-content">
+	<% post.post_attachments.each do |att| %>
+		<%= image_tag att.attachment_url(:single) %>
 	<% end %>
 </div>
 <div class="post-caption">
