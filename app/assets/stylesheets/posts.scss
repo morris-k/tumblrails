@@ -3,13 +3,58 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .post-container {
+	position: relative;
 	margin-bottom: 2em;
+	width: 460px;
+}
+
+.post-body {
+	padding: 1em 2em;
+}
+.post-tags {
+	padding-bottom: .5em;
 }
 
 .post-body, .post-tags {
 	padding-left: 1em;
+	background: #fff;
 }
 
 .post-list {
+	margin-left: 200px;
 	margin-top: 2em;
+
+}
+
+.post-head {
+	background: #444;
+	.post-avatar {
+		position: absolute;
+		top: 0;
+		left: -80px;
+		img {
+			border-radius: 4px;
+		}
+	}
+
+	.post-head-left, .post-head-permalink {
+		padding: .5em 1em;
+		background: #444;
+	}
+
+	.post-head-permalink {
+		position: absolute;
+		right: 0;
+		top: 0;
+		
+	}
+}
+
+.post-title {
+	margin-top: 0;
+	padding: .2em 0 .5em 1em;
+	background: #444;
+	a {
+	color: #fff;
+	}
 }

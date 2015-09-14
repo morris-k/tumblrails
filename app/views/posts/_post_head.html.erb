@@ -1,4 +1,11 @@
-<div class="post_head">
-	<%= link_to post.blog_name, post.blog %>
-	<%= link_to "see post", blog_post_path(post_id: post.id, id: post.blog.id) %>
+<div class="post-head">
+	<div class="post-avatar">
+		<%= image_tag post.blog.avatar_url(:small) %>
+	</div>
+	<div class="post-head-left">
+		<%= link_to post.blog_name, post.blog, :class => 'post-blog-link' %>
+	</div>
+	<div class="post-head-permalink">
+	<%= link_to "see post", permalink(post) %>
+	</div>
 </div>

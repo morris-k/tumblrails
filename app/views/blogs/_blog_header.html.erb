@@ -1,3 +1,4 @@
 <div class="row blog-header">
 	<%= link_to @blog.name, @blog, :class => 'blog-header-name-link' %>
+	<%= image_tag @blog.avatar_url(:medium), :class => 'blog-header-avatar' %>
 </div>

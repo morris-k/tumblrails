@@ -4,7 +4,7 @@ module PostsHelper
 		"#{post.post_type.downcase.pluralize}/#{post.post_type.downcase}"
 	end
 
-	def klass(post)
-		post.post_type.constantize
+	def permalink(post)
+		blog_post_path(post_id: post.id, id: post.blog.id)
 	end
 end

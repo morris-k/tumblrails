@@ -1,6 +1,7 @@
 class Blog < ActiveRecord::Base
+  belongs_to :user
 
-belongs_to :user
+  mount_uploader :avatar, AvatarUploader
 
   has_many :passive_follows, foreign_key: :followed_id,
             class_name: "BlogFollow"

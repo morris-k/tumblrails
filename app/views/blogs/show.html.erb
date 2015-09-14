@@ -2,7 +2,9 @@
 
 <p id="notice"><%= notice %></p>
 
-<% @posts.each do |post| %>
-	<%= render 'posts/post', post: post %>
-<% end %>
+<div class="post-list">
+	<% @posts.each do |post| %>
+		<%= render 'posts/post', post: post %>
+	<% end %>
+</div>
 

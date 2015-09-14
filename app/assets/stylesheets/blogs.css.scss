@@ -1,15 +1,22 @@
 .blog-header {
-	height: 120px;
+	height: 9em;
 	background: #d43f3f;
 	text-align: center;
 	position: relative;
-	margin-bottom: 4em;
+	margin-bottom: 8em;
 
 	.blog-header-name-link {
 		color: #efefef;
 		font-size: 2em;
 		font-family: 'Helvetica';
+		font-weight: 600;
 		display: block;
 		margin-top: .5em;
+		padding-bottom: .5em;
+	}
+
+	img {
+	border: 4px solid #eed483;
+	border-radius: 100%;
 	}
 }
