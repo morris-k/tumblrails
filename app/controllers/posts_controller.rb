@@ -1,11 +1,12 @@
 class PostsController < ApplicationController
 
 	def index
-		if params[:tag].present?
-			@posts = Post.tagged_with(params[:tag])
-		else
-			@posts = Post.all 
-		end
+		@posts = Post.all 
+	end
+
+	def search_tag
+		@tag = params[:tag]
+		@posts = Post.tagged_with(params[:tag])
 	end
 
 	def destroy

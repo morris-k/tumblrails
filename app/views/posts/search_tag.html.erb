@@ -1,0 +1,10 @@
+<div class="searched dash-text">
+	<h3>Posts tagged <%= @tag %></h3>
+</div>
+<% if @posts.any? %>
+	<div class="posts_tagged post-list set-post-list">
+		<%= render 'posts/post_list' %>
+	</div>
+<% else %>
+	<p class="dash-text"> No posts tagged with <%= @tag %> :( </p>
+<% end %> 

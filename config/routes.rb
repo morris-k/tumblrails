@@ -11,7 +11,8 @@ Rails.application.routes.draw do
 
   get '/', to: 'dashboard#index', as: :dashboard
 
-  get 'tagged/:tag', to: 'posts#index', as: :tag
+  get 'search', to: 'posts#search_tag', as: :search_tag
+  get 'tagged/:tag', to: 'posts#search_tag', as: :tag
 
   post 'like/:post_id', to: 'likes#create', as: :like_post
   delete 'like/:post_id', to: 'likes#destroy', as: :unlike_post
