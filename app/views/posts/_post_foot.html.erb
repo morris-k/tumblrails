@@ -1,4 +1,7 @@
 <div class="post-foot clearfix">
+	<div class="post-notes">
+		<%= post.note_count %>
+	</div>
 	<ul class="post-actions">
 		<li class='post-like'><%= render 'likes/like', post: post %></li>
 		<% if current_user.owns_post(post) %>

@@ -6,15 +6,27 @@ def create_data
 	create_users
 	create_follows
 	create_posts
+	create_likes
 end
 
 def create_users
+	ap = "/Applications/XAMPP/xamppfiles/htdocs/rails/tumblrails/app/assets/images/"
+	ar_files = ["alien.jpeg", "animal.jpeg", "cop.jpeg", "penguin.jpeg", "racer.jpeg"].map{|x| ap + x }
 	puts "CREATING USERS"
 	pass = 'password'
-	User.create(name: 'test', email: 'test@example.com', password: 'password')
-	20.times do 
+	u = User.create(name: 'test', email: 'test@example.com', password: 'password')
+	File.open(ap + "lights2.jpeg") do |f| 
+		u.primary_blog.avatar = f
+	end
+	u.primary_blog.save
+	20.times do |x|
 		name = Faker::Name.first_name + Faker::Name.last_name
-		User.create(name: name.downcase, email: name.downcase + "@example.com", password: 'password')
+		u = User.create(name: name.downcase, email: name.downcase + "@example.com", password: 'password')
+		avf = rand(ar_files.length)
+		File.open(ar_files[avf]) do |f|
+			u.primary_blog.avatar = f
+		end
+		u.primary_blog.save
 	end
 	puts "--- #{User.count} USERS CREATED"
 end
@@ -49,6 +61,18 @@ def create_posts
 		end
 	end
 	puts "--- #{Post.count} POSTS CREATED"
+end
+
+def create_likes
+	puts "CREATING LIKES"
+	ids = [*1..21]
+	Post.all.each do |p|
+		n = rand(15) + 2
+		ids.shuffle[0..n].each do |uid|
+			User.find(uid).like(p)
+		end
+	end
+	puts "--- #{Like.count} LIKES CREATED"
 end
 
 DatabaseCleaner.clean

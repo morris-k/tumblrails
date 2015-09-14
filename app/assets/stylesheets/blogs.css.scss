@@ -23,7 +23,12 @@
 
 .blog-posts {
 	width: 100%;
-	.post-container {
+
+	.note-list {
+		width: 460px;
+	}
+
+	.post-container, .note-list {
 		margin-left: auto;
 		margin-right: auto;
 	}

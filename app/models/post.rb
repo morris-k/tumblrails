@@ -10,12 +10,21 @@ class Post < ActiveRecord::Base
 
 	belongs_to :blog
 
+
 	def blog_name
 		blog.name
-	end
+	end 
 
 	def post_images
 		post_attachments.map(&:attachment)
+	end
+
+	def notes
+		Note.where(reblog_key: reblog_key)
+	end
+
+	def note_count
+		notes.length
 	end
 
 	protected

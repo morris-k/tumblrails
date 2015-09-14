@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914010853) do
+ActiveRecord::Schema.define(version: 20150914190001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -52,6 +52,17 @@ ActiveRecord::Schema.define(version: 20150914010853) do
   end
 
   add_index "likes", ["reblog_key"], name: "index_likes_on_reblog_key", using: :btree
+
+  create_table "notes", force: :cascade do |t|
+    t.integer  "notable_id"
+    t.string   "notable_type"
+    t.string   "reblog_key"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
+
+  add_index "notes", ["reblog_key", "notable_id", "notable_type"], name: "index_notes_on_reblog_key_and_notable_id_and_notable_type", using: :btree
+  add_index "notes", ["reblog_key"], name: "index_notes_on_reblog_key", using: :btree
 
   create_table "post_attachments", force: :cascade do |t|
     t.integer  "post_id"

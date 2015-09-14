@@ -1,0 +1,7 @@
+<div class="note-list">
+<% notes.each do |note| %>
+	<div class="post-note">
+		<%= render "notes/note_#{note.notable_type.downcase}", object: note.notable %>
+	</div>
+<% end %>
+</div>

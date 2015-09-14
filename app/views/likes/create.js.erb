@@ -1,2 +1,5 @@
-var $cont = $('.post-container[data-post=' + <%= @post.id %>+ "] .post-like");
-$cont.empty().append("<%= j render 'likes/like', post: @post %>");
+var $likeCont = $('.post-container[data-post=' + <%= @post.id %>+ "] .post-like");
+var $noteCountCont = $('.post-container[data-post=' + <%= @post.id %>+ "] .post-notes");
+$likeCont.empty().append("<%= j render 'likes/like', post: @post %>");
+$noteCountCont.empty().append("<%= j @post.note_count.to_s %>")
+$(".note-list").empty().append("<%= j render 'notes/note_list', notes: @post.notes %>")

@@ -2,9 +2,16 @@
 
 <p id="notice"><%= notice %></p>
 
-<div class="blog-posts post-list">
-	<% @posts.each do |post| %>
-		<%= render 'posts/post', post: post %>
-	<% end %>
-</div>
+<% if @posts %>
+	<div class="blog-posts post-list">
+		<% @posts.each do |post| %>
+			<%= render 'posts/post', post: post %>
+		<% end %>
+	</div>
+<% else %>
+	<div class="blog-posts post-list">
+		<%= render 'posts/post', post: @post %>
+		<%= render 'notes/note_list', notes: @post.notes %>
+	</div>
+<% end %>
 

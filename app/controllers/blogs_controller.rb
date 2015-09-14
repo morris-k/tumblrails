@@ -11,7 +11,7 @@ class BlogsController < ApplicationController
   # GET /blogs/1.json
   def show
     if params[:post_id]
-        @posts = [Post.find(params[:post_id])]
+        @post = Post.find(params[:post_id])
     else
         @posts = @blog.posts
      end
@@ -74,6 +74,6 @@ class BlogsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def blog_params
-      params[:blog]
+      params.require(:blog).permit(:avatar)
     end
 end
