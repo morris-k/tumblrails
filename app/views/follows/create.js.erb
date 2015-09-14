@@ -1,0 +1,2 @@
+var $cont = $('.post-container[data-blog=' + <%= @blog.id %>+ "] .blog-follow");
+$cont.empty().append("<%= j render 'follows/follow', blog: @blog %>");

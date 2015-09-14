@@ -4,6 +4,9 @@
 	</div>
 	<div class="post-head-left">
 		<%= link_to post.blog_name, post.blog, :class => 'post-blog-link' %>
+		<span class="blog-follow">
+		<%= render 'follows/follow', blog: post.blog %>
+		</span>
 	</div>
 	<div class="post-head-permalink">
 	<%= link_to "see post", permalink(post) %>

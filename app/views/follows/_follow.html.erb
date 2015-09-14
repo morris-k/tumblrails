@@ -1,0 +1,9 @@
+<% if !current_user.following?(blog) %>
+	<%= link_to follow_path(blog_id: blog.id), method: :post do %>
+		<i class="glyphicon glyphicon-plus"></i>
+	<% end %>
+<% else %>
+	<%= link_to unfollow_path(blog_id: blog.id), method: 'delete' do %>
+		<i class="glyphicon glyphicon-minus"></i>
+	<% end %>
+<% end %>

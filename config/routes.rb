@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   post 'like/:post_id', to: 'likes#create', as: :like_post
   delete 'like/:post_id', to: 'likes#destroy', as: :unlike_post
 
+  post 'follow/:blog_id', to: 'follows#create', as: :follow
+  delete 'unfollow/:blog_id', to: 'follows#destroy', as: :unfollow
+
   resources :texts
   resources :photos
 
