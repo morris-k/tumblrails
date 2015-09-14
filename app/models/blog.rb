@@ -9,4 +9,7 @@ class Blog < ActiveRecord::Base
   has_many :followers, through: :following_users, source: :primary_blog
 
   has_many :posts
+
+  has_many :likes, foreign_key: :liked_id
+  has_many :posts_liked, through: :likes, source: :post
 end

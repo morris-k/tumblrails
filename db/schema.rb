@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150913231759) do
+ActiveRecord::Schema.define(version: 20150914010853) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -42,6 +42,17 @@ ActiveRecord::Schema.define(version: 20150913231759) do
   add_index "blogs", ["name"], name: "index_blogs_on_name", unique: true, using: :btree
   add_index "blogs", ["user_id"], name: "index_blogs_on_user_id", using: :btree
 
+  create_table "likes", force: :cascade do |t|
+    t.string   "reblog_key"
+    t.integer  "post_id"
+    t.integer  "liker_id"
+    t.integer  "liked_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["reblog_key"], name: "index_likes_on_reblog_key", using: :btree
+
   create_table "post_attachments", force: :cascade do |t|
     t.integer  "post_id"
     t.string   "attachment"
@@ -60,6 +71,7 @@ ActiveRecord::Schema.define(version: 20150913231759) do
     t.string   "title"
     t.text     "body"
     t.text     "caption"
+    t.string   "reblog_key"
   end
 
   add_index "posts", ["blog_id"], name: "index_posts_on_blog_id", using: :btree

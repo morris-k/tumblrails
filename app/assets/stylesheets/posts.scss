@@ -4,8 +4,9 @@
 
 .post-container {
 	position: relative;
-	margin-bottom: 2em;
+	margin-bottom: 3em;
 	width: 460px;
+	background: #fff;
 }
 
 .post-body {
@@ -56,5 +57,24 @@
 	background: #444;
 	a {
 	color: #fff;
+	}
+}
+
+.post-foot {
+	border-top: 1px solid #ddd;
+	background: #fff;
+	.post-actions {
+		margin-bottom: 0;
+		float: right;
+		li {
+			display: inline-block;
+			a {
+			padding: .5em;
+			display: block;
+			}
+			.unliked:hover {
+				color: #444;
+			}
+		}
 	}
 }

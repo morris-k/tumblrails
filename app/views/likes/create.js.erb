@@ -1,0 +1,2 @@
+var $cont = $('.post-container[data-post=' + <%= @post.id %>+ "] .post-like");
+$cont.empty().append("<%= j render 'likes/like', post: @post %>");

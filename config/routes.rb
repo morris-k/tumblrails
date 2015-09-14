@@ -13,6 +13,9 @@ Rails.application.routes.draw do
 
   get 'tagged/:tag', to: 'posts#index', as: :tag
 
+  post 'like/:post_id', to: 'likes#create', as: :like_post
+  delete 'like/:post_id', to: 'likes#destroy', as: :unlike_post
+
   resources :texts
   resources :photos
 

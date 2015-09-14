@@ -1,5 +1,5 @@
 <div class="row">
-	<div class="post-container">
+	<div class="post-container" data-post=<%= post.id %>>
 		<%= render 'posts/post_head', post: post %>
 		<%= render post_view_name(post), post: post %>
 		<%= render 'posts/tags', post: post %>

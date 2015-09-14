@@ -1,7 +1,8 @@
-<div class="post-foot">
-	<div class="post-actions">
+<div class="post-foot clearfix">
+	<ul class="post-actions">
+		<li class='post-like'><%= render 'likes/like', post: post %></li>
 		<% if current_user.owns_post(post) %>
-			<%= link_to "Delete", post_path(post), method: 'delete' %>
+		<li><%= link_to "Delete", post_path(post), method: 'delete' %></li>
 		<% end %>
-	</div>
+	</ul>
 </div>

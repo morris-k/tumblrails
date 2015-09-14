@@ -1,0 +1,9 @@
+<% if !current_user.likes?(post) %>
+	<%= link_to like_post_path(post_id: post.id), method: :post, remote: true do %>
+		<i class="glyphicon glyphicon-heart unliked"></i>
+	<% end %>
+<% else %>
+	<%= link_to unlike_post_path(post_id: post.id), method: 'delete', remote: true do %>
+		<i class="glyphicon glyphicon-heart liked"></i>
+	<% end %>
+<% end %>

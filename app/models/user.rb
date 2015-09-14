@@ -18,8 +18,12 @@ class User < ActiveRecord::Base
   has_many :following, through: :active_follows,
                 source: :followed
 
-
   has_many :posts, through: :blogs
+
+  has_many :likes, foreign_key: :liker_id
+  has_many :liked_posts, through: :likes, source: :post
+
+
 
   def create_primary
     self.blogs.create(name: name, primary: true, admin: true)
@@ -49,7 +53,6 @@ class User < ActiveRecord::Base
     following.length
   end
 
-
   def dash_posts
     ids = following.ids.concat(blogs.ids)
     Post.where(blog_id: ids)
@@ -57,6 +60,26 @@ class User < ActiveRecord::Base
 
   def owns_post(post)
     posts.include?(post)
+  end
+
+  def likes?(post)
+    liked_posts.include?(post)
+  end
+
+  def can_like(post)
+    !likes?(post)
+  end
+
+  def like(post)
+    if can_like(post)
+      likes.create(post_id: post.id, liked_id: post.blog.id, reblog_key: post.reblog_key)
+    end
+  end
+
+  def unlike(post)
+    if likes?(post)
+      likes.find_by(post_id: post.id).destroy
+    end
   end
 
 end
