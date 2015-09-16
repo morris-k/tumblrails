@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150914190001) do
+ActiveRecord::Schema.define(version: 20150916022118) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,18 +76,34 @@ ActiveRecord::Schema.define(version: 20150914190001) do
 
   create_table "posts", force: :cascade do |t|
     t.integer  "blog_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.string   "post_type"
     t.string   "title"
     t.text     "body"
     t.text     "caption"
     t.string   "reblog_key"
+    t.boolean  "is_reblog",  default: false
   end
 
   add_index "posts", ["blog_id"], name: "index_posts_on_blog_id", using: :btree
   add_index "posts", ["post_type", "caption"], name: "index_posts_on_post_type_and_caption", using: :btree
   add_index "posts", ["post_type", "title", "body"], name: "index_posts_on_post_type_and_title_and_body", using: :btree
+
+  create_table "reblogs", force: :cascade do |t|
+    t.integer  "post_id"
+    t.integer  "reblogged_post_id"
+    t.string   "reblog_key"
+    t.integer  "reblogger_id"
+    t.integer  "reblogged_id"
+    t.text     "comment"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+  end
+
+  add_index "reblogs", ["post_id", "reblog_key"], name: "index_reblogs_on_post_id_and_reblog_key", using: :btree
+  add_index "reblogs", ["reblog_key", "reblogger_id", "reblogged_id"], name: "index_reblogs_on_reblog_key_and_reblogger_id_and_reblogged_id", using: :btree
+  add_index "reblogs", ["reblog_key"], name: "index_reblogs_on_reblog_key", using: :btree
 
   create_table "taggings", force: :cascade do |t|
     t.integer  "tag_id"

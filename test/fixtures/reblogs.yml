@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  post_id: 1
+  reblog_key: MyString
+  reblogger_id: 1
+  reblogged_id: 1
+  comment: MyText
+
+two:
+  post_id: 1
+  reblog_key: MyString
+  reblogger_id: 1
+  reblogged_id: 1
+  comment: MyText

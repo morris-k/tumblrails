@@ -3,7 +3,7 @@ class Post < ActiveRecord::Base
 
 	acts_as_taggable
 
-	before_create :generate_reblog_key
+	before_create :check_for_reblog
 
 	has_many :post_attachments
 	accepts_nested_attributes_for :post_attachments
@@ -27,10 +27,24 @@ class Post < ActiveRecord::Base
 		notes.length
 	end
 
+	def commentable_attribute 
+		case post_type
+		when 'Text'
+			body
+		when 'Photo'
+			caption
+		end
+	end
+
 	protected
 
+	def check_for_reblog
+		if !self.is_reblog?
+			generate_reblog_key
+		end
+	end
+
 	def generate_reblog_key
-		return if !self.reblog_key.nil?
 		self.reblog_key = loop do
 			random_key = SecureRandom.urlsafe_base64(nil, false)[0..7]
 			break random_key unless Post.exists?(reblog_key: random_key)
