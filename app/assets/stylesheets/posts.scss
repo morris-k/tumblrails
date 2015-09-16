@@ -6,16 +6,21 @@
 	background: #333;
 }
 
+.post-form {
+	margin-top: 2em;
+	textarea {
+	min-height: 20em;
+	}
+}
+
 .set-post-list {
 	margin-left: 200px;
 }
 
-
 .post-container {
 	position: relative;
 	margin-bottom: 3em;
-	width: 460px;
-	background: #fff;
+	width: 460px; 
 }
 
 .post-body {
@@ -30,12 +35,16 @@
 	background: #fff;
 }
 
+.post-content {
+	background: #fff;
+}
+
 .post-list {
 	margin-top: 2em;
 }
 
 .post-head {
-	background: #444;
+
 	.post-avatar {
 		position: absolute;
 		top: 0;
@@ -50,11 +59,40 @@
 		background: #444;
 	}
 
+	.post-head-left {
+		width: 440px;
+		border-top-left-radius: 4px;
+	}
+
 	.post-head-permalink {
 		position: absolute;
 		right: 0;
 		top: 0;
+		border-top-right-radius: 4px;
 		
+	}
+}
+
+.page-posts, .page-dashboard {
+	.permalink-hover {
+		&:before {
+			content: " ";
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-top: 12px solid #333;
+			border-left: 12px solid transparent;
+		}
+		&:after {
+			content: " ";
+			display: block;
+			position: absolute;
+			top: 0;
+			right: 0;
+			border-bottom: 12px solid #777;
+			border-right: 12px solid transparent;
+		}
 	}
 }
 

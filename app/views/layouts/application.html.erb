@@ -6,9 +6,9 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
 </head>
-<body class="body-<%= controller_name %>">
+<body class="body">
 	<%= render 'shared/header' %>
-	<div class="container-fluid">
+	<div class="container-fluid page-<%= controller_name %>">
 		<% flash.each do |type, message| %>
 			<div class="#{type} error-#{type}"><%= message %></div>
 		<% end %>

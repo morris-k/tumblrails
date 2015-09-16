@@ -1,5 +1,5 @@
-<%= form_for @blog, html: { multipart: true } do |f| %>
-  <% if @blog.errors.any? %>
+<div class="row">
+    <% if @blog.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@blog.errors.count, "error") %> prohibited this blog from being saved:</h2>
 
@@ -10,11 +10,17 @@
       </ul>
     </div>
   <% end %>
+<%= form_for @blog, html: { multipart: true, :class => "col-sm-8 col-sm-offset-2" }  do |f| %>
 
-  <%= image_tag @blog.avatar_url(:small) %>
-  <%= f.file_field :avatar %>
+  <div class="form-group">
+    <%= image_tag @blog.avatar_url(:small) %></br>
+    <%= f.label :avatar %>
+    <%= f.file_field :avatar %>
+  </div>
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Save Changes", :class => 'btn btn-primary' %>
+    <%= link_to "Cancel", root_path, :class => 'btn btn-default' %>
   </div>
 <% end %>
+</div>

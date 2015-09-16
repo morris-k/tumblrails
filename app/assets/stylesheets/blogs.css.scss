@@ -33,3 +33,13 @@
 		margin-right: auto;
 	}
 }
+
+.page-blogs {
+	form {
+		padding: 2em 1em;
+		border: 1px solid #ddd;
+		.actions {
+		float: right;
+		}
+	}
+}

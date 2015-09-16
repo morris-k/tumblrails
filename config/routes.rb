@@ -3,11 +3,11 @@ Rails.application.routes.draw do
   devise_for :users
   root 'dashboard#index'
 
-  get 'blogs/:id/posts/:post_id', to: 'blogs#show', as: :blog_post
-
   resources :blogs
 
   resources :posts
+
+  get 'blogs/:id/posts/:post_id', to: 'blogs#show', as: :blog_post
 
   get '/', to: 'dashboard#index', as: :dashboard
 
