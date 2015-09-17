@@ -12,4 +12,14 @@ class Blog < ActiveRecord::Base
 
   has_many :likes, foreign_key: :liked_id
   has_many :posts_liked, through: :likes, source: :post
+
+
+  def reblog(params)
+  	Reblog.new(params)
+  end
+
+  def reblogged_posts
+  	Post.where(reblogged_id: self.id)
+  end
+
 end

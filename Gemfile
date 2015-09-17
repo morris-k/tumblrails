@@ -38,6 +38,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'devise'
 gem 'bootstrap-sass'
 gem 'acts-as-taggable-on', '~> 3.4'
+gem 'virtus'
 
 gem 'mini_magick'
 gem 'carrierwave', github: 'carrierwaveuploader/carrierwave'

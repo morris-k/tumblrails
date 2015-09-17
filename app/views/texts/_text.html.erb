@@ -2,5 +2,5 @@
 	<h4><%= link_to post.title, permalink(post) %></h4>
 </div>
 <div class="post-body post-content">
-	<%= post.body %>
+	<%= post.body.html_safe %>
 </div>

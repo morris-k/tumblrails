@@ -1,5 +1,4 @@
 class Photo < Post
 
-	self.inheritance_column = 'post_type'
-
+	alias_attribute :nestable_content, :caption
 end
